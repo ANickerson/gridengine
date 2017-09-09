@@ -152,7 +152,10 @@ class GridEngineScheduler(Scheduler):
     if not job_queue: return
 
     # update the keyword resources
-    resources.update(self.resources)
+    if resources:
+      resources = resources.update(self.resources)
+    else:
+      resources = self.resources
 
     # retrieve the job target
     target = job_queue[0].target
